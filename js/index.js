@@ -7,7 +7,7 @@ inputNewTodo.addEventListener('keyup', function(event) {
 
     let valueNewTodo = inputNewTodo.value.trim()
 
-    if(event.keyCode === 13 && valueNewTodo) {
+    if ( event.keyCode === 13 && valueNewTodo ) {
         newTodo(valueNewTodo)
     }
 
