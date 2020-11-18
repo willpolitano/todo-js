@@ -1,5 +1,5 @@
-# Vanilla JavaScript TodoMVC Example
+# JavaScript Todo
 
-> JavaScript® (often shortened to JS) is a lightweight, interpreted, object-oriented language with first-class functions, most known as the scripting language for Web pages, but used in many non-browser environments as well such as node.js or Apache CouchDB.
+> Reutilização do layout do projeto todomvc para desenvolvimento da parte funcional, com objetivo de práticar javascript. 
 
-> _[JavaScript - developer.mozilla.org](http://developer.mozilla.org/en-US/docs/JavaScript)
+> Referencia do projeto todomvc - https://github.com/tastejs/todomvc
