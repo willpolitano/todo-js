@@ -1,5 +1,6 @@
-let inputNewTodo = document.querySelector('.new-todo')
 const listTodo = document.querySelector('.todo-list')
+
+let inputNewTodo = document.querySelector('.new-todo')
 let idTemplate = 1
 
 inputNewTodo.addEventListener('keyup', function(event) {
@@ -17,7 +18,7 @@ function newTodo(value) {
                         <div class="view">
                             <input class="toggle" type="checkbox">
                             <label> ${value} </label>
-                            <button class="destroy"></button>
+                            <button class="destroy" onclick="destroyTodo(${idTemplate})"></button>
                         </div>
                     </li>`
 
@@ -26,7 +27,10 @@ function newTodo(value) {
     inputNewTodo.value = ''
 
     idTemplate++
+}
 
+function destroyTodo (id) {
+    document.querySelector("[data-id='" + id + "']").remove()
 }
 
 
