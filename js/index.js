@@ -1,23 +1,44 @@
 const listTodo = document.querySelector('.todo-list')
-
+const checkBox = document.querySelector('.toggle-all')
 let inputNewTodo = document.querySelector('.new-todo')
 let idLine = 1
 
-inputNewTodo.addEventListener('keyup', function(e) {
-
+function validateTodo(event) {
+    
     let valueNewTodo = inputNewTodo.value.trim()
 
-    if ( e.keyCode === 13 && valueNewTodo )
+    if ( event.keyCode === 13 && valueNewTodo )
         newTodo(valueNewTodo)
-})
+}
 
 function completeTodo(id) {
 
-    let lineCompleted = document.querySelector("[data-id='" + id + "']")
-    let checkBox = lineCompleted.querySelector('.view .toggle')
+    let lineComplete = document.querySelector("[data-id='" + id + "']")
+    let checkBoxLine = lineComplete.querySelector('.view .toggle')
+
+    if( checkBoxLine.checked == true )  
+        lineComplete.classList.add('completed')
+    else 
+        lineComplete.classList.remove('completed')
+        checkBox.checked = false
+    
+}
+
+function completeAll() {
+    let lineAll = document.querySelectorAll('[data-id]')
+    let checkBoxAll = document.querySelectorAll('.toggle')
 
     if( checkBox.checked == true ) 
-        lineCompleted.classList.add('completed');
+
+        for (i = 0; i < lineAll.length; i++) {
+            lineAll[i].classList.add('completed')
+            checkBoxAll[i].checked = true;
+        }
+
     else 
-        lineCompleted.classList.remove('completed');
+
+        for (i = 0; i < lineAll.length; i++) {
+            lineAll[i].classList.remove('completed')
+            checkBoxAll[i].checked = false;
+        }
 }
