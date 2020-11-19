@@ -1,5 +1,4 @@
 const listTodo = document.querySelector('.todo-list')
-const checkBox = document.querySelector('.toggle-all')
 
 let inputNewTodo = document.querySelector('.new-todo')
 let idLine = 1
@@ -15,6 +14,7 @@ function validateTodo(event) {
 function completeTodo(id) {
 
     let lineComplete = document.querySelector("[data-id='" + id + "']")
+    let checkBox = document.querySelector('.toggle-all')
     let checkBoxLine = lineComplete.querySelector('.view .toggle')
     let lineAll = document.querySelectorAll('[data-id]')
     let selected = document.querySelector('.selected')
@@ -27,30 +27,30 @@ function completeTodo(id) {
         checkBox.checked = false
 
     see(lineAll, action)
-    
+    clearCompleted()
 }
 
 function completeAll() {
+
     let lineAll = document.querySelectorAll('[data-id]')
     let checkBoxAll = document.querySelectorAll('.toggle')
+    let checkBox = document.querySelector('.toggle-all')
     let selected = document.querySelector('.selected')
     let action = selected.id
 
-    if( checkBox.checked == true ) 
+    for (i = 0; i < lineAll.length; i++) {
 
-        for (i = 0; i < lineAll.length; i++) {
+        if ( checkBox.checked == true ) {
             lineAll[i].classList.add('completed')
-            checkBoxAll[i].checked = true;
-        }
-
-    else 
-
-        for (i = 0; i < lineAll.length; i++) {
+            checkBoxAll[i].checked = true
+        } else { 
             lineAll[i].classList.remove('completed')
-            checkBoxAll[i].checked = false;
+            checkBoxAll[i].checked = false
         }
+    }
 
     see(lineAll, action)
+    clearCompleted()
 }
 
 function selectTodo(elem, e) {
@@ -64,7 +64,7 @@ function selectTodo(elem, e) {
     selected.classList.remove('selected')
     elem.classList.add('selected')
 
-    see (lineAll, action) 
+    see(lineAll, action) 
 }
 
 function see(lineAll, action) {
@@ -72,29 +72,24 @@ function see(lineAll, action) {
     for (i = 0; i < lineAll.length; i++) {
  
         switch ( action ) {
+
             case 'all' :
-
                 blockLine(lineAll[i])
-
-            break
+                break
 
             case 'active' : 
-
-                if (lineAll[i].className === 'completed') 
+                if ( lineAll[i].className === 'completed' ) 
                     noneLine(lineAll[i])
                 else 
                     blockLine(lineAll[i])
-
-            break
+                break
 
             case 'completed' : 
-
-                if (lineAll[i].className !== 'completed')
+                if ( lineAll[i].className !== 'completed' )
                     noneLine(lineAll[i])
                 else
                     blockLine(lineAll[i])
-
-            break
+                break
         }
     }
 }
@@ -107,4 +102,28 @@ function blockLine(line) {
 function noneLine(line) {
     
     line.style.display = "none"
+}
+
+function clearCompleted()
+{
+    let lineComplete = document.querySelector('.completed')
+    let buttonClearComplete = document.querySelector('.clear-completed')
+
+    if ( lineComplete )
+        buttonClearComplete.style.display = "block"
+    else 
+        buttonClearComplete.style.display = "none"
+}
+
+function clearCompletedAll() {
+
+    let lineAll = document.querySelectorAll('[data-id]')
+
+    for (i = 0; i < lineAll.length; i++) {
+
+        if (lineAll[i].className === 'completed')
+            destroyTodo(lineAll[i].getAttribute('data-id'))
+    }
+
+    clearCompleted()
 }
