@@ -1,6 +1,9 @@
 function newTodo(value) {
-    
-    let line = `<li data-id="${idLine}" class="">
+
+    let action = document.querySelector('.selected').id
+    actionClass = action == 'completed' ? 'none' : 'block'
+
+    let line = `<li data-id="${idLine}" class="" style="display:${actionClass};">
                     <div class="view">
                         <input class="toggle" type="checkbox" onClick="completeTodo(${idLine})">
                         <label> ${value} </label>
@@ -13,4 +16,6 @@ function newTodo(value) {
     inputNewTodo.value = ''
 
     idLine++
+
+    countTodo()
 }
